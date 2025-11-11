@@ -1,0 +1,8 @@
+[submodule "ros_ws_src/rviz_satellite"]
+	path = ros_ws_src/rviz_satellite
+	url = https://github.com/nobleo/rviz_satellite.git
+	branch = ros1
+[submodule "ros_ws_src/topological_navigation"]
+	path = ros_ws_src/topological_navigation
+	url = https://github.com/LCAS/topological_navigation.git
+	branch = noetic_devel

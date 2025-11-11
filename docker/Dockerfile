@@ -53,6 +53,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libxcb-xkb1 \
     libfontconfig1 \
     libfreetype6 \
+    libgeographic-dev \
     xterm \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
