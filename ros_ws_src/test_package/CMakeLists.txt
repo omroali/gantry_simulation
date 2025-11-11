@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(test_pkg)
+project(test_package)
 
 find_package(catkin REQUIRED COMPONENTS
   rospy
@@ -8,16 +8,14 @@ find_package(catkin REQUIRED COMPONENTS
 
 catkin_python_setup()
 
-## Mark test directories for discovery of tests
-# enable_testing()
-
-## Build talker and listener nodes
+# Install Python scripts
 install(PROGRAMS
   scripts/talker.py
   scripts/listener.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
-install(DIRECTORY launch/
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
-)
+# You can uncomment the following lines if you have launch files
+# install(DIRECTORY launch/
+#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
+# )

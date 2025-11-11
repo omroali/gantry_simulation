@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>test_pkg</name>
+  <name>test_package</name>
   <version>0.0.0</version>
-  <description>The test package to make sure initial project works</description>
+  <description>The test_package for ROS Noetic talker/listener example</description>
 
   <maintainer email="user@todo.todo">user</maintainer>
 
@@ -13,7 +13,8 @@
   <depend>rospy</depend>
   <depend>std_msgs</depend>
 
-  <export>
-    <metapackage/>
-  </export>
+  <!-- The following are for Python script execution -->
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+
 </package>
