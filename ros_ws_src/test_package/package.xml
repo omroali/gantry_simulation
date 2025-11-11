@@ -13,8 +13,4 @@
   <depend>rospy</depend>
   <depend>std_msgs</depend>
 
-  <!-- The following are for Python script execution -->
-  <exec_depend>rospy</exec_depend>
-  <exec_depend>std_msgs</exec_depend>
-
 </package>

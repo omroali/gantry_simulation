@@ -1,10 +1,10 @@
 services:
-  ros-noetic:
+  gantry-sim:
     build:
       context: .
       dockerfile: Dockerfile
-    image: ros-noetic-gantry-dev
-    container_name: ros_noetic_gantry_container
+    image: ros-noetic-gantry-sim
+    container_name: ros_noetic_gantry_sim_container
     stdin_open: true
     tty: true
     command: /bin/bash

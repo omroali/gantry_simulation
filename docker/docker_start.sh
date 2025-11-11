@@ -1,7 +1,7 @@
 #!/bin/bash
 
 COMPOSE_FILE="docker-compose.yml"
-SERVICE_NAME="ros-noetic"
+SERVICE_NAME="gantry-sim"
 
 xhost +local:docker
 
