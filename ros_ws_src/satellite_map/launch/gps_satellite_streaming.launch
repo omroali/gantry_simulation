@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<launch>
+    <!--
+        GPS-Based Satellite Tile Streaming Launch File
+
+        This launch file demonstrates real-time satellite tile downloading
+        based on GPS location. As the robot moves, new tiles are automatically
+        downloaded and cached.
+
+        Usage:
+            roslaunch gantry_simulation gps_satellite_streaming.launch
+
+        To customize:
+            - Edit gantry_map.gps to change GPS location
+            - Modify tile_url parameter to use different tile source
+            - Adjust zoom_level for different resolutions (16-22)
+            - Increase num_workers for faster downloads
+    -->
+
+    <!-- Publish static GPS fix -->
+    <node pkg="rostopic" type="rostopic" name="gps_fix_publisher"
+          args="pub /gps/fix sensor_msgs/NavSatFix --latch --file=$(find gantry_simulation)/launch/gantry_map.gps"
+          output="screen"/>
+
+    <!-- Satellite Tile Downloader Node -->
+    <node pkg="gantry_simulation" type="satellite_tile_downloader.py" name="satellite_tile_downloader"
+          output="screen">
+
+        <!-- Tile source: Esri World Imagery (free, no API key) -->
+        <!-- Other options:
+             - Google Maps: https://maps.googleapis.com/maps/api/staticmap?maptype=satellite&center={lat},{lon}&zoom={z}&size=512x512&key=YOUR_KEY
+             - Mapbox: https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/512/{z}/{x}/{y}?access_token=YOUR_TOKEN
+             - USGS (US only): https://basemap.nationalmap.gov/arcrest/services/USGSImagery/MapServer/tile/{z}/{y}/{x}
+        -->
+        <param name="tile_url" value="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"/>
+
+        <!-- API key (if needed for your tile source) -->
+        <param name="api_key" value=""/>
+
+        <!-- Zoom level (16-22, higher = more detailed) -->
+        <param name="zoom_level" value="18"/>
+
+        <!-- Number of parallel download threads -->
+        <param name="num_workers" value="4"/>
+
+        <!-- GPS topic to subscribe to -->
+        <param name="gps_topic" value="/gps/fix"/>
+    </node>
+
+    <!-- Start RViz with satellite map configuration -->
+    <node pkg="rviz" type="rviz" name="rviz"
+          args="-d $(find gantry_simulation)/launch/gantry_map_satellite.rviz"
+          output="screen"/>
+
+</launch>

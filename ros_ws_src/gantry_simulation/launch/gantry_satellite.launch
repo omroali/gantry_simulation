@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<launch>
+    <!--
+        Gantry Simulation Satellite Map Launch File
+
+        This launch file publishes a GPS fix and starts RViz with satellite imagery
+        from Esri World Imagery (free, no API key required).
+
+        Usage:
+            roslaunch gantry_simulation gantry_satellite.launch
+
+        To change the GPS location, edit: launch/gantry_map.gps
+        To use different tile source, edit: launch/gantry_map_satellite.rviz
+    -->
+
+    <!-- Publish static GPS fix for satellite map display -->
+    <node pkg="rostopic" type="rostopic" name="gantry_gps_fix"
+          args="pub /gps/fix sensor_msgs/NavSatFix --latch --file=$(find gantry_simulation)/launch/gantry_map.gps"
+          output="screen"/>
+
+    <!-- Start RViz with satellite map configuration -->
+    <node pkg="rviz" type="rviz" name="rviz"
+          args="-d $(find gantry_simulation)/launch/gantry_map_satellite.rviz"
+          output="screen"/>
+
+    <!-- Optional: Print GPS coordinates to console for reference -->
+    <node pkg="rosgraph_msgs" type="clock" name="clock_publisher" output="screen"/>
+
+</launch>

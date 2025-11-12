@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<launch>
+    <!--
+        Mapbox Satellite Map Launch File
+
+        This launch file displays satellite imagery from Mapbox in RViz.
+        It reads the Mapbox access token from environment variables for security.
+
+        Setup:
+            1. Create a .env file in the workspace root with:
+               MAPBOX_ACCESS_TOKEN=your_token_here
+            2. Source the .env file before launching:
+               source .env
+            3. Launch this file:
+               roslaunch satellite_map mapbox_satellite.launch
+
+        You can also set the token as environment variable directly:
+            export MAPBOX_ACCESS_TOKEN="your_token_here"
+            roslaunch satellite_map mapbox_satellite.launch
+    -->
+
+    <!-- GPS Publisher - publishes static GPS fix for map display -->
+    <node pkg="rostopic" type="rostopic" name="gps_fix_publisher"
+          args="pub /gps/fix sensor_msgs/NavSatFix --latch --file=$(find gantry_simulation)/launch/gantry_map.gps"
+          output="screen">
+        <param name="queue_size" value="1"/>
+    </node>
+
+    <!-- Start RViz with Mapbox satellite configuration -->
+    <node pkg="rviz" type="rviz" name="rviz"
+          args="-d $(find satellite_map)/rviz/mapbox_satellite.rviz"
+          output="screen">
+    </node>
+
+    <!-- Optional: Satellite Tile Downloader for caching -->
+    <!-- Uncomment to enable real-time tile downloading and caching -->
+    <!--
+    <node pkg="satellite_map" type="satellite_tile_downloader.py" name="satellite_tile_downloader"
+          output="screen">
+
+        Mapbox Satellite Tile URL
+        Object URI format for Mapbox:
+        https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/512/{z}/{x}/{y}?access_token=TOKEN
+
+        <param name="tile_url" value="https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/512/{z}/{x}/{y}"/>
+        <param name="api_key" value="$(env MAPBOX_ACCESS_TOKEN)"/>
+        <param name="zoom_level" value="18"/>
+        <param name="num_workers" value="4"/>
+        <param name="gps_topic" value="/gps/fix"/>
+    </node>
+    -->
+
+</launch>

@@ -3,6 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    env_file: "../.env"
     image: ros-noetic-gantry-sim
     container_name: ros_noetic_gantry_sim_container
     stdin_open: true
@@ -20,3 +21,4 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - ../ros_ws_src:/home/ros/catkin_ws/src:rw
       - ../bash_scripts:/home/ros/bash_scripts:rw
+      # - ../.env:/home/ros:rw

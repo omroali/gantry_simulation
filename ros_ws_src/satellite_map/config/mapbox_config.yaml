@@ -1,0 +1,63 @@
+# Mapbox Satellite Map Configuration
+
+# Mapbox Settings
+mapbox:
+  tile_url: "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/512/{z}/{x}/{y}"
+  tile_size: 512
+  max_zoom: 22
+  min_zoom: 0
+
+# RViz Display Settings
+rviz_display:
+  display_name: "MapboxSatelliteDisplay"
+  default_zoom: 18
+  blocks: 2
+  alpha: 1.0
+  draw_behind: false
+  z_offset: 0
+
+# Coordinate Frame Configuration
+coordinate_frames:
+  map_frame: "map"
+  fixed_frame: "base_link"
+  utm_frame: "utm"
+  utm_zone: -1
+  map_transform_type: "NavSatFix Messages and Map Frame"
+
+# GPS Configuration
+gps:
+  topic: "/gps/fix"
+  xy_reference: "<NavSatFix Message>"
+  z_reference: "<NavSatFix Message>"
+  frame_id: "base_link"
+
+# Tile Caching Configuration
+caching:
+  enabled: true
+  cache_dir: ".cache/rviz_satellite"
+  max_size_mb: 1000
+  expiration_days: 0
+
+# Tile Downloader Configuration (for satellite_tile_downloader.py)
+tile_downloader:
+  enabled: false
+  num_workers: 4
+  download_timeout: 10
+  retry_failed: true
+  max_retries: 3
+  zoom_level: 18
+  download_radius: 1
+
+# Performance Tuning
+performance:
+  update_rate: 30
+  queue_size: 1
+  multithreading: true
+
+# Logging Configuration
+logging:
+  # Log level: DEBUG, INFO, WARN, ERROR
+  level: "INFO"
+  log_downloads: true
+  log_cache: false
+  log_transforms: false
