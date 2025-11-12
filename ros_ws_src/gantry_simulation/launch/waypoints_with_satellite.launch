@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Arguments -->
+    <arg name="waypoint_file" default="$(find gantry_simulation)/config/waypoints.yaml"/>
+    <arg name="zoom_level" default="18"/>
+    <arg name="tile_url" default="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"/>
+    <arg name="api_key" default=""/>
+    <arg name="gps_file" default="$(find gantry_simulation)/launch/gantry_map.gps"/>
+
+    <!-- Publish static GPS fix for map location -->
+    <node pkg="rostopic" type="rostopic" name="gps_fix_publisher"
+          args="pub /gps/fix sensor_msgs/NavSatFix --latch --file=$(arg gps_file)"
+          output="screen"/>
+
+    <!-- Satellite Tile Downloader  -->
+    <node pkg="satellite_map" type="satellite_tile_downloader.py" name="satellite_tile_downloader"
+          output="screen">
+        <param name="tile_url" value="$(arg tile_url)"/>
+        <param name="api_key" value="$(arg api_key)"/>
+        <param name="zoom_level" value="$(arg zoom_level)"/>
+        <param name="num_workers" value="4"/>
+        <param name="gps_topic" value="/gps/fix"/>
+    </node>
+
+    <!-- Waypoint Visualizer for interactive editing -->
+    <node pkg="gantry_simulation"
+          type="simple_waypoint_viz.py"
+          name="simple_waypoint_visualizer"
+          output="screen">
+        <param name="waypoint_file" value="$(arg waypoint_file)"/>
+        <param name="enable_navigation" value="false"/>
+    </node>
+
+    <!-- RViz with combined satellite map and waypoints -->
+    <node pkg="rviz"
+          type="rviz"
+          name="rviz"
+          args="-d $(find gantry_simulation)/config/waypoints_satellite.rviz"
+          output="screen"/>
+
+</launch>

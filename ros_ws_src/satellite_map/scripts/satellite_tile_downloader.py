@@ -6,7 +6,7 @@ This script downloads and caches satellite imagery tiles from various sources.
 It supports multi-threaded downloading and can stream tiles based on GPS location.
 
 Usage:
-    rosrun gantry_simulation satellite_tile_downloader.py
+    rosrun satellite_map satellite_tile_downloader.py
 
 Parameters:
     ~tile_url (str): URL template for tile source (default: Esri World Imagery)

@@ -1,0 +1,137 @@
+- meta:
+    map: gantry_nodes
+    pointset: gantry_nodes
+  node:
+    edges:
+      - action: move_base
+        edge_id: node_a_to_node_b
+        node: node_b
+        top_vel: 0.55
+      - action: move_base
+        edge_id: node_a_to_node_c
+        node: node_c
+        top_vel: 0.55
+    localise_by_topic: ''
+    name: node_a
+    pointset: gantry_nodes
+    pose:
+      orientation:
+        w: 1.0
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      position:
+        x: 0.0
+        y: 0.0
+        z: 0.0
+    verts:
+      - x: 0.69
+        y: 0.287
+      - x: 0.287
+        y: 0.69
+      - x: -0.287
+        y: 0.69
+      - x: -0.69
+        y: 0.287
+      - x: -0.69
+        y: -0.287
+      - x: -0.287
+        y: -0.69
+      - x: 0.287
+        y: -0.69
+      - x: 0.69
+        y: -0.287
+    xy_goal_tolerance: 0.3
+    yaw_goal_tolerance: 0.1
+
+- meta:
+    map: gantry_nodes
+    pointset: gantry_nodes
+  node:
+    edges:
+      - action: move_base
+        edge_id: node_b_to_node_a
+        node: node_a
+        top_vel: 0.55
+      - action: move_base
+        edge_id: node_b_to_node_c
+        node: node_c
+        top_vel: 0.55
+    localise_by_topic: ''
+    name: node_b
+    pointset: gantry_nodes
+    pose:
+      orientation:
+        w: 1.0
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      position:
+        x: 5.0
+        y: 0.0
+        z: 0.0
+    verts:
+      - x: 0.69
+        y: 0.287
+      - x: 0.287
+        y: 0.69
+      - x: -0.287
+        y: 0.69
+      - x: -0.69
+        y: 0.287
+      - x: -0.69
+        y: -0.287
+      - x: -0.287
+        y: -0.69
+      - x: 0.287
+        y: -0.69
+      - x: 0.69
+        y: -0.287
+    xy_goal_tolerance: 0.3
+    yaw_goal_tolerance: 0.1
+
+- meta:
+    map: gantry_nodes
+    pointset: gantry_nodes
+  node:
+    edges:
+      - action: move_base
+        edge_id: node_c_to_node_a
+        node: node_a
+        top_vel: 0.55
+      - action: move_base
+        edge_id: node_c_to_node_b
+        node: node_b
+        top_vel: 0.55
+    localise_by_topic: ''
+    name: node_c
+    pointset: gantry_nodes
+    pose:
+      orientation:
+        w: 1.0
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      position:
+        x: 2.5
+        y: 5.0
+        z: 0.0
+    verts:
+      - x: 0.69
+        y: 0.287
+      - x: 0.287
+        y: 0.69
+      - x: -0.287
+        y: 0.69
+      - x: -0.69
+        y: 0.287
+      - x: -0.69
+        y: -0.287
+      - x: -0.287
+        y: -0.69
+      - x: 0.287
+        y: -0.69
+      - x: 0.69
+        y: -0.287
+    xy_goal_tolerance: 0.3
+    yaw_goal_tolerance: 0.1

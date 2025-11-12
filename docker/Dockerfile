@@ -60,6 +60,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
+    ros-noetic-move-base \
+    ros-noetic-move-base-msgs \
+    ros-noetic-navigation \
+    ros-noetic-actionlib \
+    ros-noetic-actionlib-msgs \
     && \
     rm -rf /var/lib/apt/lists/*
 
@@ -67,14 +72,7 @@ RUN python3 -m pip install --no-cache-dir --upgrade \
     pip wheel \
     setuptools==58.2.0 \
     packaging==24.2 \
-    numpy==1.23.5 \
-    scipy \
-    matplotlib \
-    pyproj \
-    pygame \
-    scikit-learn \
-    opencv-python \
-    pyserial \
+    requests \
     tmule==1.5.9
 
 USER ${USERNAME}
